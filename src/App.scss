@@ -64,8 +64,41 @@ body{
   }
 }
 
+nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid silver;
+  background-color: black;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  .navbar-brand{
+    width: auto;
+    img{
+      height: 75px;
+    }
+  }
+  .nav-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: auto;
+    a{
+      margin: 3rem 1.5rem 0 0;
+      color: silver;
+      text-decoration: none;
+      font-weight: bold;
+      height: 1.5rem;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+
 .landing{
-  margin-top: 20rem;
+  margin-top: 15rem;
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -78,5 +111,53 @@ body{
   .landing_logo{
     margin: auto;
     width: 25%;
+  }
+}
+
+.log-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 15rem auto;
+  background: black;
+  color: silver;
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  form{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    label{
+      padding: 0 0.5rem 0 0.5rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    input{
+      background: black;
+      color: silver;
+      border: none;
+      border-bottom: 1px solid silver;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+  .form-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 .5rem 0 .5rem;
+    a{
+      text-decoration: none;
+      color: silver;
+    }
+  }
+  button{
+    background: black;
+    color: silver;
+    border: none;
   }
 }
