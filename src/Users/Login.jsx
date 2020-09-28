@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {UserContext} from '../Context/UserContext';
 
 const Login = () => {
@@ -9,6 +9,7 @@ const Login = () => {
     password: ''
   })
   const {user, setUser} = useContext(UserContext);
+  const history = useHistory();
 
   const handleChange = (e) => {
     setUserData({
@@ -19,7 +20,15 @@ const Login = () => {
 
   const doSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
+    axios.post('http://localhost:5000/api/auth/login', userData)
+      .then(res => {
+        localStorage.setItem('token', res.data.token)
+        setUser(res.data.token);
+        history.push('/dashboard');
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   return(

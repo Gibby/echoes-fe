@@ -134,14 +134,14 @@ nav{
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-    }
-    input{
-      background: black;
-      color: silver;
-      border: none;
-      border-bottom: 1px solid silver;
-      &:focus{
-        outline: none;
+      input{
+        background: black;
+        color: silver;
+        border: none;
+        border-bottom: 1px solid silver;
+        &:focus{
+          outline: none;
+        }
       }
     }
   }
@@ -160,4 +160,11 @@ nav{
     color: silver;
     border: none;
   }
+}
+
+.registered{
+  width: 50%;
+  margin: 15rem auto;
+  text-align: center;
+  color: silver;
 }
