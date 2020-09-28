@@ -1,10 +1,9 @@
 import React, { useState, useContext } from 'react';
-import jwt from 'jsonwebtoken';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {UserContext} from '../Context/UserContext';
 
-const Register = () => {
+const Register_One = () => {
   const [userData, setUserData] = useState({
     username: '',
     password: '',
@@ -12,6 +11,7 @@ const Register = () => {
     discord_id: ''
   })
   const {user, setUser} = useContext(UserContext);
+  const history = useHistory();
 
   const handleChange = (e) => {
     setUserData({
@@ -22,7 +22,15 @@ const Register = () => {
 
   const doSubmit = (e) => {
     e.preventDefault();
-    console.log(userData)
+    axios.post('http://localhost:5000/api/auth/register', userData)
+      .then(res => {
+        history.push('/registered');
+      })
+      .catch(err => {
+        const {message, error} = err;
+        console.log(message);
+        console.log(error);
+      })
   }
 
   return(
@@ -78,4 +86,4 @@ const Register = () => {
   );
 }
 
-export default Register;
+export default Register_One;

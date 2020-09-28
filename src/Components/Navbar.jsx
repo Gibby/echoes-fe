@@ -1,20 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import falcon from '../Assets/falcon_emblem.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { UserContext } from '../Context/UserContext'
 
 const Navbar = () => {
-  const {user} = useContext(UserContext);
+  const {user, setUser} = useContext(UserContext);
+  const [token, setToken] = useState(localStorage.getItem('token'));
+  const history = useHistory();
+
+  const logOut = (e) => {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    setToken(null)
+    history.push('/')
+  }
+
   return(
     <nav>
       <section className="navbar-brand">
         <Link to="/"><img src={falcon} /></Link>
       </section>
       <section className="nav-links">
-        {user && user.admin ? <Link to="/admin">Admin</Link> : null}
-        {user ? <Link to="/industry">Industry</Link> : null}
-        {user ? 
-            <Link to="/">Logout</Link>
+        {token ? <Link to="/admin">Admin</Link> : null}
+        {token ? <Link to="/industry">Industry</Link> : null}
+        {token ? 
+            <button className="logout-button" onClick={logOut}>Logout</button>
           : <Link to="/login">Login</Link>
         }
       </section>
